@@ -1,20 +1,12 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
 
 import AddItem from './AddItem'
 import ListItem from './Listitem'
 
 import { Route, Routes } from 'react-router-dom'
 
-// import { fetchFruits } from '../actions'
-
-function App () {
-  // const fruits = useSelector(state => state.fruits)
-  // const dispatch = useDispatch()
-  // useEffect(() => {
-  //   dispatch(fetchFruits())
-  // }, [])
-
+function App() {
   return (
     <>
       <div className='app'>
@@ -22,6 +14,7 @@ function App () {
         <Routes>
           <Route path='/' element={<ListItem />} />
           <Route path='/bah' element={<AddItem />} />
+          {/* path need to change */}
         </Routes>
         <footer>Goodbye this is your footer</footer>
 
