@@ -1,20 +1,22 @@
-import { getFruits } from '../apis/fruits'
+import { fetchNotes } from '../apis/notes'
+// this accesses the data from bridge and uses it as an object within an array and it triggers the action in reducer using GET_NOTES
+export const GET_NOTES = 'GET_NOTES'
 
-export const SET_FRUITS = 'SET_FRUITS'
-
-export function setFruits (fruits) {
+export function getNotes(notes) {
+  console.log(notes)
   return {
-    type: SET_FRUITS,
-    fruits
+    type: GET_NOTES,
+    notes
   }
 }
-
-export function fetchFruits () {
+// this is updating the store with the new recieved data from fetchNotes
+export function getNotesData() {
   return dispatch => {
-    return getFruits()
-      .then(fruits => {
-        dispatch(setFruits(fruits))
+    return fetchNotes()
+      .then(notes => {
+        dispatch(getNotes(notes))
         return null
       })
   }
 }
+// this is the complete backend data transformation to the front end. Dispatch (getNotes(notes)) is using the getNotes(notes) data in reducer/notes.js action.notes.
