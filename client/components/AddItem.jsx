@@ -1,15 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
-function AddItem (post) {
+import {
+  setNote
+} from '../actions/index'
 
+function AddItem () {
+  const dispatch = useDispatch()
+
+  const initialState = {
+    title: '',
+    note: ''
+  }
+
+  const [form, setForm] = useState(initialState)
+
+  //   const { title, note } = props.item
+
+  function handleChange (event) {
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value
+    })
+
+    // setForm
+  }
+
+  function onSubmit (event) {
+    event.preventDefault()
+    console.log(event)
+    console.log(form)
+    dispatch(setNote(form))
+    setForm(initialState)
+  }
 
   return (
     <>
-    <>
-      <></inut><h3><b>Whats your note called:</b></h3>
-      <p><b>Note:</b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </Form>
-  </>
+      <form className='container'>
+        <div>
+          <label>Whats your note called:</label>
+          <input onChange={handleChange} value={form.name} type="text" name="title" placeholder="Milk"></input>
+        </div>
+        <div>
+          <label>Write your note here:</label>
+          <textarea onChange={handleChange} value={form.note} rows='2' cols='50' type="text" name="note" placeholder="Dont forget to buy the milk"></textarea>
+        </div>
+        <button onClick={onSubmit}> Submit</button>
+      </form>
+    </>
   )
 }
 
