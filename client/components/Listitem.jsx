@@ -4,17 +4,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getNotesData } from '../actions/index'
 
 function ListItem() {
-  // const notes = []
   const dispatch = useDispatch()
 
   function handleClick(event) {
 
   }
-
+// this data now becomes an array and can be used in UI data, using the useSelector hook to hook the updated state from notes
   const notes = useSelector(state => state.notes)
+  // this dispatch is calling the action from action/index.js
   useEffect(() => {
     dispatch(getNotesData())
   }, [])
+  // [] this is to limit the cycle of loading the dispatch
 
   return (
     <>
