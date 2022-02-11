@@ -18,7 +18,10 @@ function ListItem() {
   return (
     <>
       <div className='main'>
-        <Link to='/add'><button className='newNote-button' >New</button></Link>
+
+        <Link to='/add'><button className="button-54"name='np' onClick={handleClick}>New</button></Link>
+
+
         <ul className='noteList'>
 
           {notes.map(note => {
