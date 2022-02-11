@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getNotesData } from '../actions/index'
 
-function ListItem () {
+function ListItem() {
   const dispatch = useDispatch()
 
+  function handleClick(event) {
+
+  }
   // this data now becomes an array and can be used in UI data, using the useSelector hook to hook the updated state from notes
   const notes = useSelector(state => state.notes)
   // this dispatch is calling the action from action/index.js
@@ -17,22 +20,15 @@ function ListItem () {
   return (
     <>
       <div className='main'>
-        <div className='new-container'>
-          <Link to='/add'><button className="button-55"name='np'><b>Add a note...</b></button></Link>
-        </div>
+        <Link to='/add'><button className='newNote-button' onClick={handleClick}>New</button></Link>
         <ul className='noteList'>
 
           {notes.map(note => {
             return (
               <>
                 <li className='noteList-item'>
-                  <div>
-                    <h3>{note.title}</h3>
-                  </div>
-
-                  <div>
-                    <p className='note-content'>{note.note}</p>
-                  </div>
+                  <span>{note.title}</span>
+                  <p>{note.note}</p>
                 </li>
               </>
             )
