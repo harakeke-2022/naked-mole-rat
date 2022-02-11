@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getNotesData } from '../actions/index'
@@ -14,29 +14,58 @@ function ListItem () {
   }, [])
   // [] this is to limit the cycle of loading the dispatch
 
+  const [filterTxt, setfilterTxt] = useState('')
+
+
+  function searchBar(text) {
+    setfilterTxt(text)
+
+  }
+
   return (
     <>
       <div className='main'>
-        <div className='new-container'>
-          <Link to='/add'><button className="button-55"name='np'><b>Add a note...</b></button></Link>
+
+
+        <div className="new-container">
+          <Link to='/add'><button className="button-55" name='np' >New</button></Link>
+          <input id='searchValue' type="search" className="searchbar" placeholder='Search data...' name='searchValue' onChange={(e) => searchBar(e.target.value)} />
+
         </div>
+
+
+
+
         <ul className='noteList'>
 
-          {notes.map(note => {
-            return (
-              <>
-                <li className='noteList-item'>
-                  <div>
+          {filterTxt?.length === 0
+            ? notes.map((note) => {
+              return <li className='noteList-item' key={notes.id}>
+            
+              <div>
                     <h3>{note.title}</h3>
                   </div>
 
                   <div>
                     <p className='note-content'>{note.note}</p>
                   </div>
+              </li>
+            })
+            : notes
+              .filter(note => note.title.toLowerCase().includes(filterTxt.toLowerCase()))
+              .map((note) => {
+                return <li className='noteList-item' key={notes.id}>
+              <div>
+                    <h3>{note.title}</h3>
+                  </div>
+
+                  <div>
+                    <p className='note-content'>{note.note}</p>
+                  </div>
+
                 </li>
-              </>
-            )
-          })}
+              })
+          }
 
         </ul>
       </div>
