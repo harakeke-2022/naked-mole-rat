@@ -12,11 +12,8 @@ function App() {
       <div className='app'>
         <header>Hello this is your header</header>
         <Routes>
-          {/* <Route path='/' element={<AddItem />} /> */}
           <Route path='/' element={<ListItem />} />
           <Route path='/add' element={<AddItem />} />
-          {/* path need to change */}
-
         </Routes>
         <footer>Goodbye this is your footer</footer>
 
