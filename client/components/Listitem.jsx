@@ -1,12 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { getNotesData } from '../actions/index'
 
-function ListItem (post) {
+function ListItem() {
+  const dispatch = useDispatch()
+
+  function handleClick(event) {
+
+  }
+  // this data now becomes an array and can be used in UI data, using the useSelector hook to hook the updated state from notes
+  const notes = useSelector(state => state.notes)
+  // this dispatch is calling the action from action/index.js
+  useEffect(() => {
+    dispatch(getNotesData())
+  }, [])
+  // [] this is to limit the cycle of loading the dispatch
+
   return (
-
     <>
-      <div>
-        <h3><b>Title:</b>Consectetur adipiscing</h3>
-        <p><b>Note:</b>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <div className='main'>
+        <Link to='/add'><button className='newNote-button' onClick={handleClick}>New</button></Link>
+        <ul className='noteList'>
+
+          {notes.map(note => {
+            return (
+              <>
+                <li className='noteList-item'>
+                  <span>{note.title}</span>
+                  <p>{note.note}</p>
+                </li>
+              </>
+            )
+          })}
+
+        </ul>
       </div>
     </>
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
+
 import {
   setNote
 } from '../actions/index'
@@ -47,6 +48,7 @@ function AddItem () {
         </div>
         <button onClick={onSubmit}> Submit</button>
       </form>
+
     </>
   )
 }
