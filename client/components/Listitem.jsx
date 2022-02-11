@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getNotesData } from '../actions/index'
 
-function ListItem() {
+function ListItem () {
   const dispatch = useDispatch()
 
   // this data now becomes an array and can be used in UI data, using the useSelector hook to hook the updated state from notes
@@ -26,8 +26,9 @@ function ListItem() {
     <>
       <div className='main'>
 
-        <div className="searchContainer">
-          <Link to='/add'><button className="button-54" name='np' >New</button></Link>
+
+        <div className="new-container">
+          <Link to='/add'><button className="button-55" name='np' >New</button></Link>
           <input id='searchValue' type="search" className="searchbar" placeholder='Search data...' name='searchValue' onChange={(e) => searchBar(e.target.value)} />
 
         </div>
@@ -40,16 +41,28 @@ function ListItem() {
           {filterTxt?.length === 0
             ? notes.map((note) => {
               return <li className='noteList-item' key={notes.id}>
-                <span>{note.title}</span>
-                <p>{note.note}</p>
+            
+              <div>
+                    <h3>{note.title}</h3>
+                  </div>
+
+                  <div>
+                    <p className='note-content'>{note.note}</p>
+                  </div>
               </li>
             })
             : notes
               .filter(note => note.title.toLowerCase().includes(filterTxt.toLowerCase()))
               .map((note) => {
                 return <li className='noteList-item' key={notes.id}>
-                  <span>{note.title}</span>
-                  <p>{note.note}</p>
+              <div>
+                    <h3>{note.title}</h3>
+                  </div>
+
+                  <div>
+                    <p className='note-content'>{note.note}</p>
+                  </div>
+
                 </li>
               })
           }
