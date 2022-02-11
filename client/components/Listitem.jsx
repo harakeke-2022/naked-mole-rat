@@ -6,9 +6,6 @@ import { getNotesData } from '../actions/index'
 function ListItem() {
   const dispatch = useDispatch()
 
-  function handleClick(event) {
-
-  }
   // this data now becomes an array and can be used in UI data, using the useSelector hook to hook the updated state from notes
   const notes = useSelector(state => state.notes)
   // this dispatch is calling the action from action/index.js
@@ -20,7 +17,12 @@ function ListItem() {
   return (
     <>
       <div className='main'>
-        <Link to='/add'><button className='newNote-button' onClick={handleClick}>New</button></Link>
+        <div className="searchContainer">
+          <Link to='/add'><button className='newNote-button'>New</button></Link>
+          <input type="text" className="searchbar" />
+          <button className='searchbtn'></button>
+        </div>
+
         <ul className='noteList'>
 
           {notes.map(note => {
