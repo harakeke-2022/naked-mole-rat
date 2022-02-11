@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
+import { setNote } from '../actions/index'
 
-import {
-  setNote
-} from '../actions/index'
-
-function AddItem () {
+function AddItem() {
   const dispatch = useDispatch()
 
   const initialState = {
@@ -18,7 +15,7 @@ function AddItem () {
 
   //   const { title, note } = props.item
 
-  function handleChange (event) {
+  function handleChange(event) {
     setForm({
       ...form,
       [event.target.name]: event.target.value
@@ -27,7 +24,7 @@ function AddItem () {
     // setForm
   }
 
-  function onSubmit (event) {
+  function onSubmit(event) {
     event.preventDefault()
     console.log(event)
     console.log(form)
