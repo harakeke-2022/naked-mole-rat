@@ -24,13 +24,16 @@ function ListItem() {
 
   return (
     <>
-      <div className='listmain'>
+      <div className='main'>
 
         <div className="searchContainer">
-          <Link to='/add'><button className='newNote-button'>New</button></Link>
+          <Link to='/add'><button className="button-54" name='np' >New</button></Link>
           <input id='searchValue' type="search" className="searchbar" placeholder='Search data...' name='searchValue' onChange={(e) => searchBar(e.target.value)} />
-          {/* <button>search</button> */}
+
         </div>
+
+
+
 
         <ul className='noteList'>
 
