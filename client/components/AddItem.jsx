@@ -43,7 +43,7 @@ function AddItem() {
           <label>Write your note here:</label>
           <textarea onChange={handleChange} value={form.note} rows='2' cols='50' type="text" name="note" placeholder="Dont forget to buy the milk"></textarea>
         </div>
-        <button onClick={onSubmit}> Submit</button>
+        <button onClick={onSubmit} className="button-54"> Submit</button>
       </form>
 
     </>
