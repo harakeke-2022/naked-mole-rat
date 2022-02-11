@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getNotesData } from '../actions/index'
@@ -14,27 +14,42 @@ function ListItem() {
   }, [])
   // [] this is to limit the cycle of loading the dispatch
 
+  const [filterTxt, setfilterTxt] = useState('')
+
+
+  function searchBar(text) {
+    setfilterTxt(text)
+
+  }
+
   return (
     <>
-      <div className='main'>
+      <div className='listmain'>
+
         <div className="searchContainer">
           <Link to='/add'><button className='newNote-button'>New</button></Link>
-          <input type="text" className="searchbar" />
-          <button className='searchbtn'></button>
+          <input id='searchValue' type="search" className="searchbar" placeholder='Search data...' name='searchValue' onChange={(e) => searchBar(e.target.value)} />
+          {/* <button>search</button> */}
         </div>
 
         <ul className='noteList'>
 
-          {notes.map(note => {
-            return (
-              <>
-                <li className='noteList-item'>
+          {filterTxt?.length === 0
+            ? notes.map((note) => {
+              return <li className='noteList-item' key={notes.id}>
+                <span>{note.title}</span>
+                <p>{note.note}</p>
+              </li>
+            })
+            : notes
+              .filter(note => note.title.toLowerCase().includes(filterTxt.toLowerCase()))
+              .map((note) => {
+                return <li className='noteList-item' key={notes.id}>
                   <span>{note.title}</span>
                   <p>{note.note}</p>
                 </li>
-              </>
-            )
-          })}
+              })
+          }
 
         </ul>
       </div>
