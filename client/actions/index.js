@@ -19,6 +19,7 @@ export function setNotePending() {
 }
 
 export function setNote(form) {
+  console.log('hello this is getnotes from your action')
   return (dispatch) => {
     dispatch(setNotePending())
     return postNote(form)
@@ -33,7 +34,6 @@ export function setNote(form) {
 }
 
 export function getNotes(notes) {
-  console.log(notes)
   return {
     type: GET_NOTES,
     notes
