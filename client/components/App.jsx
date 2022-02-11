@@ -9,7 +9,7 @@ import { Route, Routes } from 'react-router-dom'
 function App() {
   return (
     <>
-      <div className='app'>
+      <div className='main'>
         <header>Hello this is your header</header>
         <Routes>
           <Route path='/' element={<ListItem />} />
