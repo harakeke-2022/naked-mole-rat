@@ -8,7 +8,12 @@ function getNotes (db = connection) {
 function addNotes (newNotes, db = connection) {
   return db('notes').insert(newNotes)
 }
+
+function deleteNotes (db = connection) {
+  return db('notes').select()
+}
 module.exports = {
   getNotes,
-  addNotes
+  addNotes,
+  deleteNotes
 }

@@ -4,6 +4,7 @@ import { fetchNotes, postNote } from '../apis/notes'
 export const GET_NOTES = 'GET_NOTES'
 export const SET_FORM = 'SET_FORM'
 export const PENDING_FORM = 'PENDING_FORM'
+export const DELETE_NOTE = 'DELETE_NOTE'
 
 export function setNoteSuccess(form) {
   return {
@@ -39,6 +40,7 @@ export function getNotes(notes) {
     notes
   }
 }
+
 // this is updating the store with the new recieved data from fetchNotes
 export function getNotesData() {
   return dispatch => {
@@ -54,3 +56,23 @@ export function getNotesData() {
   }
 }
 // this is the complete backend data transformation to the front end. Dispatch (getNotes(notes)) is using the getNotes(notes) data in reducer/notes.js action.notes.
+
+export function deleteNote(id) {
+  return {
+    type: DELETE_NOTE,
+    id
+  }
+}
+
+export function deleteNoteData() {
+  return dispatch => {
+    return deleteNote()
+      .then(note => {
+        dispatch(deleteNote(note))
+        return null
+      })
+      .catch(err => {
+        console.error('this thing is not working lol fix it', err)
+      })
+  }
+}
